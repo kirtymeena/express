@@ -14,15 +14,15 @@ let posts = [
 ]
 
 // get all posts
-app.get("/api/posts", (req, res) => {
-    const limit = parseInt(req.query.limit)
+app.get("/api/posts/:id", (req, res) => {
+    const id = parseInt(req.params.id)
+    const post = posts.find(post => post.id === id)
 
-    // isNAN(limit) -> checks if the limit is a number or not because in query user can add sql query as well and mess things up (SQL injection)
-    if (!isNaN(limit) && limit > 0) {
-        res.status(200).json(posts.slice(0, limit))
+    if (!post) {
+        res.status(404).json({ msg: `post with the id ${ id } was not found` })
     }
     else {
-        res.status(200).json(posts)
+        res.status(200).json(post)
     }
 })
 
