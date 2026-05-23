@@ -8,10 +8,12 @@ const port = process.env.PORT || 8080
 // initialze express
 const app = express()
 
-// setup static folder
-// app.use(express.static(path.join(__dirname, 'public')))
+// body parse middleware -  takes care of raw json
+app.use(express.json())
+app.use(express.urlencoded({ extended: false })) //this will allow us to send form data
 
-// Route
+
+// Routes
 app.use('/api/posts', posts)
 
 app.listen(port, () => {
