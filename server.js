@@ -15,7 +15,8 @@ let posts = [
 
 // get all posts
 app.get("/api/posts/:id", (req, res) => {
-    console.log(req.params.id)
+    console.log(req.params.id) //http://localhost:8000/api/posts/1 --> req.params returns an object {'id':'1'}
+    console.log(req.query.limit) //http://localhost:8000/api/posts?limit=2 --> req.query returns an object {limit:2}
     const id = parseInt(req.params.id)
     res.json(posts.filter(post => post.id === id))
 })
