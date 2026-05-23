@@ -20,12 +20,14 @@ router.get('/', (req, res) => {
 })
 
 // get single post
-router.get("/:id", (req, res) => {
+router.get("/:id", (req, res, next) => {
     const id = parseInt(req.params.id)
     const post = posts.find(post => post.id === id)
 
     if (!post) {
-        return res.status(404).json({ msg: `post with the id ${ id } was not found` })
+        const error = new Error(`A Post with the id of ${ id } was not found`)
+        return next(error)
+        // return res.status(404).json({ msg: `post with the id ${ id } was not found` })
     }
 
     res.status(200).json(post)
