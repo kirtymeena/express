@@ -19,10 +19,10 @@ app.get("/api/posts", (req, res) => {
 
     // isNAN(limit) -> checks if the limit is a number or not because in query user can add sql query as well and mess things up (SQL injection)
     if (!isNaN(limit) && limit > 0) {
-        res.json(posts.slice(0, limit))
+        res.status(200).json(posts.slice(0, limit))
     }
     else {
-        res.json(posts)
+        res.status(200).json(posts)
     }
 })
 
