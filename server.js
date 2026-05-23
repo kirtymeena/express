@@ -19,11 +19,11 @@ app.get("/api/posts/:id", (req, res) => {
     const post = posts.find(post => post.id === id)
 
     if (!post) {
-        res.status(404).json({ msg: `post with the id ${ id } was not found` })
+        return res.status(404).json({ msg: `post with the id ${ id } was not found` })
     }
-    else {
-        res.status(200).json(post)
-    }
+
+    res.status(200).json(post)
+
 })
 
 
