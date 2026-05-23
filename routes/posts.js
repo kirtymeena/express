@@ -7,6 +7,7 @@ let posts = [
     { id: 3, title: "Post 3" },
 ]
 
+
 // get limited posts
 router.get('/', (req, res) => {
     console.log(req.query)
