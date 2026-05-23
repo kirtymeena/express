@@ -14,11 +14,16 @@ let posts = [
 ]
 
 // get all posts
-app.get("/api/posts/:id", (req, res) => {
-    console.log(req.params.id) //http://localhost:8000/api/posts/1 --> req.params returns an object {'id':'1'}
-    console.log(req.query.limit) //http://localhost:8000/api/posts?limit=2 --> req.query returns an object {limit:2}
-    const id = parseInt(req.params.id)
-    res.json(posts.filter(post => post.id === id))
+app.get("/api/posts", (req, res) => {
+    const limit = parseInt(req.query.limit)
+
+    // isNAN(limit) -> checks if the limit is a number or not because in query user can add sql query as well and mess things up (SQL injection)
+    if (!isNaN(limit) && limit > 0) {
+        res.json(posts.slice(0, limit))
+    }
+    else {
+        res.json(posts)
+    }
 })
 
 
