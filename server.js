@@ -13,10 +13,14 @@ let posts = [
     { id: 3, title: "Post 3" },
 ]
 
-
-app.get("/api/posts", (req, res) => {
-    res.json(posts)
+// get all posts
+app.get("/api/posts/:id", (req, res) => {
+    console.log(req.params.id)
+    const id = parseInt(req.params.id)
+    res.json(posts.filter(post => post.id === id))
 })
+
+
 
 app.listen(port, () => {
     console.log(`server is running on ${ port }`)
