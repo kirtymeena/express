@@ -1,6 +1,6 @@
 const express = require('express')
 const path = require("path")
-const PORT = 8000
+const port = process.env.PORT || 8080
 // initialze express
 const app = express()
 
@@ -18,6 +18,6 @@ app.get("/api/posts", (req, res) => {
     res.json(posts)
 })
 
-app.listen(PORT, () => {
-    console.log(`server is running on ${ PORT }`)
+app.listen(port, () => {
+    console.log(`server is running on ${ port }`)
 })
